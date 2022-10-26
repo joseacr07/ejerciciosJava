@@ -1,31 +1,40 @@
 import java.util.ArrayList;
 
 public class Ark {
-     static ArrayList<Animal> group = new ArrayList<Animal>();
-    public static void main(String[] args) {
+  // ArrayList<Animal> stores = new ArrayList<Animal>();
+  static ArrayList<ITransportable> stores = new ArrayList<ITransportable>();
 
-        Ark ark = new Ark();
-        Mamifero vaca = new Mamifero("fliyin", "magic");
-        Mitological gargoyle = new Mitological("Hybrid", "bruiser");
-        Reptil superAnaconda = new Reptil("Poisonous", "swamp");
-        ark.store(vaca , superAnaconda , gargoyle);
-        
-        System.out.println(ark.group.size());  
+  public static void main(String[] args) {
 
-        
+    Mamifero perro = new Mamifero("Tom", 2, "Perro", "Macho");
+    Mamifero gato = new Mamifero("Michi", 4, "Gato", "Macho");
+    Reptil cocodrilo = new Reptil("Pepe", 10, "Cocodrilo", "Macho");
+    Insectos escarabajo = new Insectos("Mordo", 5, "Escarabajo", "Hembra");
+
+    
+    perro.getVolume(90, 70, 33);
+    perro.getWeight(35);
+    gato.getVolume(50, 20, 20);
+    gato.getWeight(8);
+    cocodrilo.getVolume(150, 80, 40);
+    cocodrilo.getWeight(60);
+
+    Ark.store(perro);
+    Ark.store(gato);
+    Ark.store(cocodrilo);
+    escarabajo.fly();
+
+  }
+  static void store(ITransportable t) {
+    Ark.stores.add(t);
+    
+    Animal.id++;
+    for (int i = 0; i < stores.size(); i++) {
+      //Ark.stores.get(i).seeAnimals();
+      Ark.stores.get(i).eat();
+      
     }
-    public void store(Mamifero vaca, Reptil superAnaconda, Mitological gargoyle){
-       group.add(superAnaconda);
-       group.add(vaca);
-       group.add(gargoyle);
-       for (Animal animal : group) {
-        animal.walk();
-        animal.seat();
-       System.out.println(" se ha guardado un/una" + vaca.getType()); 
-       System.out.println(" se ha guardado un/una" + gargoyle.getType());
-       System.out.println("Se ha guardado un/una" + superAnaconda.getType());
-    }
-}
-}
+    System.out.println("Hay " + Animal.getId() + " animales en el arca");
+  }
 
-  
+}
